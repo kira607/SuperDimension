@@ -1,1 +1,1 @@
-add_executable(SOURCE_FILES main.cpp creature.cpp)
+add_executable(SOURCE_FILES main.cpp creature.cpp character.cpp)

@@ -11,11 +11,12 @@ class Creature
 {
 public:
     explicit Creature(const sf::Texture &texture);
-    void Move();
+    virtual void Move() = 0;
     sf::Vector2f GetPosition() const;
     void SetRotation(float angle);
-    void Draw(sf::RenderWindow &window);
-private:
+    virtual void Draw(sf::RenderWindow &window);
+
+protected:
     sf::Sprite sprite;
     float speed = 5.f;
 };

@@ -6,7 +6,7 @@
 #include <cmath>
 
 #include <SFML/Graphics.hpp>
-#include "creature.h"
+#include "character.h"
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
     sf::Texture character_texture;
     character_texture.loadFromFile("../textures/character.png");
 
-    Creature character(character_texture);
+    Character character(character_texture);
 
     sf::Texture floor;
     floor.loadFromFile("../floor.png");

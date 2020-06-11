@@ -7,6 +7,8 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 aux_source_directory(src SOURCE)
 
+add_subdirectory(src)
+
 add_executable(SuperDimension ${SOURCE} ${SOURCE_FILES})
 
 target_link_libraries(SuperDimension sfml-graphics sfml-audio)

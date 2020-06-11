@@ -10,26 +10,6 @@ Creature::Creature(const sf::Texture &texture)
     sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
 }
 
-void Creature::Move()
-{
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-    {
-        sprite.move(0, -speed);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        sprite.move(0, speed);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        sprite.move(speed, 0);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
-        sprite.move(-speed, 0);
-    }
-}
-
 
 sf::Vector2f Creature::GetPosition() const
 {

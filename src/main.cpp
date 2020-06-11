@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include <SFML/Graphics.hpp>
+#include "creature.h"
 
 int main()
 {
@@ -22,11 +23,7 @@ int main()
     sf::Texture character_texture;
     character_texture.loadFromFile("../textures/character.png");
 
-    sf::Sprite character;
-    character.setTexture(character_texture);
-    character.setOrigin(character.getGlobalBounds().width / 2, character.getGlobalBounds().height / 2);
-
-    float speed = 5.f;
+    Creature character(character_texture);
 
     sf::Texture floor;
     floor.loadFromFile("../floor.png");
@@ -44,7 +41,7 @@ int main()
 
     sf::View view;
     view.setSize({screen_width/2,screen_height/2});
-    view.setCenter(character.getPosition());
+    view.setCenter(character.GetPosition());
 
     //double max_len = sqrt((screen_width/2) * (screen_width/2) + (screen_height/2) * (screen_height/2));
     window.setView(view);
@@ -80,22 +77,9 @@ int main()
         {
             window.close();
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        {
-            character.move(0, -speed);
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            character.move(0, speed);
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        {
-            character.move(speed, 0);
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        {
-            character.move(-speed, 0);
-        }
+
+        character.Move();
+
 
 
 
@@ -110,14 +94,14 @@ int main()
         double k = 0.07 * offset_length;
         offset.x *= k;
         offset.y *= k;
-        character.setRotation(180);
+        character.SetRotation(180);
 
         float dX = sf::Mouse::getPosition().x - screen_width/2;
         float dY = sf::Mouse::getPosition().y - screen_height/2;
         float angle = atan2(dY, dX) * 180 / 3.14159265;
-        character.setRotation(angle);
+        character.SetRotation(angle);
 
-        view.setCenter(character.getPosition() + offset);
+        view.setCenter(character.GetPosition() + offset);
         window.setView(view);
 
         /// DRAW ///
@@ -127,7 +111,7 @@ int main()
         {
             window.draw(f.at(i));
         }
-        window.draw(character);
+        character.Draw(window);
         window.display();
     }
 

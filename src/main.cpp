@@ -23,8 +23,8 @@ int main()
     character_texture.loadFromFile("../textures/character.png");
 
     sf::Sprite character;
-    character.setOrigin(character.getGlobalBounds().width / 2, character.getGlobalBounds().height / 2);
     character.setTexture(character_texture);
+    character.setOrigin(character.getGlobalBounds().width / 2, character.getGlobalBounds().height / 2);
 
     float speed = 5.f;
 
@@ -98,15 +98,24 @@ int main()
         }
 
 
+
+
         sf::Vector2f offset{sf::Mouse::getPosition()};
         offset.x -= screen_width/2;
         offset.y -= screen_height/2;
         double offset_length = sqrt((offset.x * offset.x) + (offset.y * offset.y));
+        sf::Vector2f rot = offset;
         offset.x /= ( offset_length==0 ) ? 1 : offset_length;
         offset.y /= ( offset_length==0 ) ? 1 : offset_length;
         double k = 0.07 * offset_length;
         offset.x *= k;
         offset.y *= k;
+        character.setRotation(180);
+
+        float dX = sf::Mouse::getPosition().x - screen_width/2;
+        float dY = sf::Mouse::getPosition().y - screen_height/2;
+        float angle = atan2(dY, dX) * 180 / 3.14159265;
+        character.setRotation(angle);
 
         view.setCenter(character.getPosition() + offset);
         window.setView(view);

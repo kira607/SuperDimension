@@ -1,3 +1,3 @@
 # SuperDimension
 
-A top down game using C++ and SFML
+A top down Game using C++ and SFML

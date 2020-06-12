@@ -1,53 +1,42 @@
 //
-// Created by kirill on 31.05.2020.
+// Created by kirill on 12.06.2020.
 //
 
-#include <iostream>
-#include <cmath>
-
-#include <SFML/Graphics.hpp>
-#include "character.h"
 #include "game.h"
 
-int main()
+Game::Game():
+    window(sf::VideoMode::getFullscreenModes().at(0),"Super dimension",sf::Style::Fullscreen),
+    screen_height{static_cast<float>(window.getSize().y)},
+    screen_width{static_cast<float>(window.getSize().x)}
 {
-    Game game;
-    game.MainLoop();
-    return 0;
-    // окно
-
-    sf::RenderWindow window(sf::VideoMode::getFullscreenModes().at(0), "XXX",sf::Style::Fullscreen);
     window.setVerticalSyncEnabled(true);
     window.setKeyRepeatEnabled(true);
     window.setMouseCursorVisible(true);
 
-    const float screen_width = window.getSize().x;
-    const float screen_height = window.getSize().y;
+    textures.character_texture.loadFromFile("../textures/character.png");
+    textures.floor.loadFromFile("../floor.png");
 
-    sf::Texture character_texture;
-    character_texture.loadFromFile("../textures/character.png");
+    character.SetTexture(textures.character_texture);
 
-    Character character(character_texture);
-
-    sf::Texture floor;
-    floor.loadFromFile("../floor.png");
-
-    std::vector<sf::Sprite> f;
     f.resize(36);
     for(int i = 0; i < 6; ++i)
     {
         for(int j = 0; j < 6; ++j)
         {
-            f.at(i*6+j).setTexture(floor);
+            f.at(i*6+j).setTexture(textures.floor);
             f.at(i*6+j).setPosition(i*500,j*500);
         }
     }
 
-    sf::View view;
     view.setSize({screen_width/2,screen_height/2});
     view.setCenter(character.GetPosition());
 
+    //double max_len = sqrt((screen_width/2) * (screen_width/2) + (screen_height/2) * (screen_height/2));
     window.setView(view);
+}
+
+void Game::MainLoop()
+{
     while (window.isOpen())
     {
         sf::Event event{};
@@ -111,6 +100,4 @@ int main()
         character.Draw(window);
         window.display();
     }
-
-    return 0;
 }

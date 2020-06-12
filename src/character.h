@@ -6,6 +6,7 @@
 #define SUPERDIMENSION_CHARACTER_H
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
 #include "creature.h"
 
@@ -13,8 +14,12 @@ class Character : public Creature
 {
 public:
     explicit Character(const sf::Texture &texture);
-    void Move() override;
+    Character();
+    void Update() override;
+private:
+    void UpdateRotation() override;
+    void UpdatePosition() override;
+    void Move();
 };
-
 
 #endif //SUPERDIMENSION_CHARACTER_H

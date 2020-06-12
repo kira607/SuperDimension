@@ -78,7 +78,7 @@ int main()
             window.close();
         }
 
-        character.Move();
+        character.Update();
 
 
 
@@ -94,12 +94,6 @@ int main()
         double k = 0.07 * offset_length;
         offset.x *= k;
         offset.y *= k;
-        character.SetRotation(180);
-
-        float dX = sf::Mouse::getPosition().x - screen_width/2;
-        float dY = sf::Mouse::getPosition().y - screen_height/2;
-        float angle = atan2(dY, dX) * 180 / 3.14159265;
-        character.SetRotation(angle);
 
         view.setCenter(character.GetPosition() + offset);
         window.setView(view);

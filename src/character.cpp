@@ -4,6 +4,31 @@
 
 #include "character.h"
 
+Character::Character(const sf::Texture &texture) : Creature(texture) {}
+Character::Character() : Creature() {}
+
+
+
+void Character::Update()
+{
+    UpdateRotation();
+    UpdatePosition();
+}
+
+void Character::UpdateRotation()
+{
+    int screen_width = 1920, screen_height = 1080;
+    float dX = sf::Mouse::getPosition().x - screen_width/2;
+    float dY = sf::Mouse::getPosition().y - screen_height/2;
+    float angle = atan2(dY, dX) * 180 / 3.14159265;
+    sprite.setRotation(angle);
+}
+
+void Character::UpdatePosition()
+{
+    Move();
+}
+
 void Character::Move()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -24,7 +49,6 @@ void Character::Move()
     }
 }
 
-Character::Character(const sf::Texture &texture) : Creature(texture)
-{
 
-}
+
+

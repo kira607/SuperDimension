@@ -11,14 +11,29 @@ class Creature
 {
 public:
     explicit Creature(const sf::Texture &texture);
-    virtual void Move() = 0;
+    Creature();
+
+    virtual void Update() = 0;
+    void AddHealth(int hp);
+    void ReduceHealth(int hp);
+
+    void SetTexture(const sf::Texture &texture);
+    void SetMaxHealth(int hp);
+
+
     sf::Vector2f GetPosition() const;
-    void SetRotation(float angle);
+
     virtual void Draw(sf::RenderWindow &window);
 
 protected:
+    void Init();
+    virtual void UpdateRotation() = 0;
+    virtual void UpdatePosition() = 0;
+    int health_points;
+    int max_health_points;
     sf::Sprite sprite;
-    float speed = 5.f;
+    float speed;
+    bool alive;
 };
 
 

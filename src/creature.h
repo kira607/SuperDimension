@@ -20,20 +20,22 @@ public:
     void SetTexture(const sf::Texture &texture);
     void SetMaxHealth(int hp);
 
-
     sf::Vector2f GetPosition() const;
 
     virtual void Draw(sf::RenderWindow &window);
 
 protected:
     void Init();
+    void SetUpHitBox();
     virtual void UpdateRotation() = 0;
     virtual void UpdatePosition() = 0;
-    int health_points;
-    int max_health_points;
+
+    int health_points{};
+    int max_health_points{};
     sf::Sprite sprite;
-    float speed;
-    bool alive;
+    sf::CircleShape hit_box;
+    float speed{};
+    bool alive{};
 };
 
 

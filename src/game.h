@@ -12,20 +12,31 @@ class Game
 {
 public:
     Game();
-    void MainLoop();
+    void Run();
 private:
+    void MainLoop();
+    void HandleEvents();
+    void Update();
+    void Draw();
+
+    sf::Vector2f CalculateCameraOffset() const;
+
     sf::RenderWindow window;
+
     const float screen_width;
     const float screen_height;
 
-    struct
+    struct Textures
     {
-        sf::Texture character_texture;
+        sf::Texture character;
         sf::Texture floor;
+        sf::Texture wall;
+        bool Load();
     } textures;
 
     Character character;
-    std::vector<sf::Sprite> f;
+    std::vector<sf::Sprite> floor_sprites;
+    sf::Sprite wall_sprite;
     sf::View view;
 };
 

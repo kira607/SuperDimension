@@ -4,10 +4,10 @@
 
 #include "character.h"
 
+#include <cmath>
+
 Character::Character(const sf::Texture &texture) : Creature(texture) {}
 Character::Character() : Creature() {}
-
-
 
 void Character::Update()
 {
@@ -17,16 +17,17 @@ void Character::Update()
 
 void Character::UpdateRotation()
 {
-    int screen_width = 1920, screen_height = 1080;
-    float dX = sf::Mouse::getPosition().x - screen_width/2;
+    float screen_width = 1920.f, screen_height = 1080.f; // TODO: implement logic for giving screen dimensions here
+    float dX = float(sf::Mouse::getPosition().x - screen_width/2);
     float dY = sf::Mouse::getPosition().y - screen_height/2;
-    float angle = atan2(dY, dX) * 180 / 3.14159265;
+    float angle = std::atan2(dY, dX) * 180.f / 3.14159265; // TODO: add constant kPi
     sprite.setRotation(angle);
 }
 
 void Character::UpdatePosition()
 {
     Move();
+    hit_box.setPosition(sprite.getPosition());
 }
 
 void Character::Move()

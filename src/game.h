@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "character.h"
+#include "wall.h"
 
 class Game
 {
@@ -36,7 +37,7 @@ private:
 
     Character character;
     std::vector<sf::Sprite> floor_sprites;
-    sf::Sprite wall_sprite;
+    Wall wall;
     sf::View view;
 };
 

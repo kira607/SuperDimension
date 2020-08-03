@@ -1,1 +1,1 @@
-add_executable(SOURCE_FILES main.cpp creature.cpp character.cpp game.cpp)
+add_executable(SOURCE_FILES main.cpp creature.cpp character.cpp game.cpp wall.cpp wall.h)

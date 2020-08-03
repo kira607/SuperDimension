@@ -22,9 +22,6 @@ void Creature::Init()
     max_health_points = health_points = 100;
     speed = 5.f;
     alive = true;
-
-    hit_box.setPointCount(30);
-    hit_box.setFillColor(sf::Color(255,0,0,100));
     SetUpHitBox();
 }
 
@@ -79,6 +76,8 @@ void Creature::SetUpHitBox()
 {
     if(hit_box.getRadius() == 0 && sprite.getTexture() != nullptr)
     {
+        hit_box.setPointCount(30);
+        hit_box.setFillColor(sf::Color(255,0,0,70));
         hit_box.setRadius(sprite.getGlobalBounds().width / 2);
         hit_box.setOrigin(sf::Vector2f{hit_box.getRadius(),hit_box.getRadius()});
     }

@@ -50,6 +50,8 @@ void Character::Move()
     }
 }
 
+/// TODO: add collision logic !!!
+
 
 
 

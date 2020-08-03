@@ -33,9 +33,9 @@ Game::Game():
         }
     }
 
-    wall_sprite.setTexture(textures.wall);
-    wall_sprite.setPosition(100,0);
-    wall_sprite.setScale(5,5);
+    wall.SetTexture(textures.wall);
+    wall.SetPosition(100,0);
+
 
     view.setSize({screen_width/2,screen_height/2});
     view.setCenter(character.GetPosition());
@@ -103,7 +103,7 @@ void Game::Draw()
     {
         window.draw(floor_sprites.at(i));
     }
-    window.draw(wall_sprite);
+    wall.Draw(window);
     character.Draw(window);
     window.display();
 }
@@ -124,7 +124,7 @@ sf::Vector2f Game::CalculateCameraOffset() const
 
 bool Game::Textures::Load()
 {
-    if(!character.loadFromFile("./textures/character.png"))
+    if(!character.loadFromFile("./textures/character_simple.png"))
     {
         return false;
     }

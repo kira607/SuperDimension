@@ -124,13 +124,13 @@ sf::Vector2f Game::CalculateCameraOffset() const
 
 bool Game::Textures::Load()
 {
-    if(!character.loadFromFile("./textures/character_simple.png"))
+    if(!character.loadFromFile("../textures/character_simple.png"))
     {
         return false;
     }
-    if(!wall.loadFromFile("./textures/wall.png"))
+    if(!wall.loadFromFile("../textures/wall.png"))
     {
         return false;
     }
-    return floor.loadFromFile("./textures/floor.png");
+    return floor.loadFromFile("../textures/floor.png");
 }
